@@ -113,7 +113,7 @@ read -r answer
 if [ "$answer" = "y" ]; then
     echo " * アプリケーションデータをゴミ箱に移動しています"
     sleep 1
-    files=$(printf ", POSIX file \"%s\"" "${paths[@]}" | awk '{print substr($0,3)}')
+    files=$(printf ", POSIX file \"%s\" as alias" "${paths[@]}" | awk '{print substr($0,3)}')
     osascript -e "tell application \"Finder\" to delete { $files }" >/dev/null
     echo " * 完了しました"
 fi
