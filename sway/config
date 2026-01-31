@@ -1,6 +1,6 @@
 set $MOD Mod4
 
-output * bg .background fill
+output * bg ~/.background fill
 output eDP-1 scale 1.4
 
 default_border none
@@ -32,6 +32,15 @@ bindsym $MOD+w floating toggle
 
 bindsym $MOD+r mode "resize"
 
+mode "resize" {
+    bindsym Left resize shrink width 10px
+    bindsym Right resize grow width 10px
+    bindsym Up resize grow height 10px
+    bindsym Down resize shrink height 10px
+
+    bindsym Escape mode "default"
+}
+
 bindsym $MOD+Left focus left
 bindsym $MOD+Down focus down
 bindsym $MOD+Up focus up
@@ -41,6 +50,9 @@ bindsym $MOD+Shift+Left move left
 bindsym $MOD+Shift+Down move down
 bindsym $MOD+Shift+Up move up
 bindsym $MOD+Shift+Right move right
+
+bindgesture swipe:left workspace next
+bindgesture swipe:right workspace prev
 
 bindsym $MOD+1 workspace number 1
 bindsym $MOD+2 workspace number 2
@@ -64,8 +76,8 @@ bindsym $MOD+Shift+8 move container to workspace number 8
 bindsym $MOD+Shift+9 move container to workspace number 9
 bindsym $MOD+Shift+0 move container to workspace number 10
 
-bindsym $MOD+minus scratchpad show
-bindsym $MOD+Shift+minus move scratchpad
+bindsym $MOD+Space scratchpad show
+bindsym $MOD+Shift+Space move scratchpad
 
 bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%-
@@ -76,30 +88,22 @@ bindsym --locked XF86MonBrightnessUp exec light +5
 
 bindsym Print exec grim
 
-bindgesture swipe:left workspace next
-bindgesture swipe:right workspace prev
-
-mode "resize" {
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
-
-    bindsym Escape mode "default"
-}
-
 bar {
     position top
     gaps 10
 
     font "Iosevka Slab 10"
 
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    status_command status
 
     colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        statusline #ffffffff
+        background #00000000
+        binding_mode #00000000 #00000000 #ffffffff
+        focused_workspace #ffffffff #00000000 #ffffffff
+        active_workspace #00000000 #00000000 #ffffffff
+        inactive_workspace #00000000 #00000000 #ffffffff
+        urgent_workspace #ffffffff #ffffffff #ffffffff
     }
 }
 
