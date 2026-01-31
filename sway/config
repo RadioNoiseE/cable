@@ -86,7 +86,7 @@ bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_SOURCE@ toggle
 bindsym --locked XF86MonBrightnessDown exec light -5
 bindsym --locked XF86MonBrightnessUp exec light +5
 
-bindsym Print exec grim
+bindsym Print exec grim Pictures/$(date +'%s.png')
 
 bar {
     position top
