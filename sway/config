@@ -18,9 +18,12 @@ input type:touchpad {
     tap enabled
 }
 
+inhibit_idle fullscreen
+
 floating_modifier $MOD normal
 
 bindsym $MOD+l exec foot
+bindsym $MOD+e exec expose
 
 bindsym $MOD+q kill
 bindsym $MOD+f fullscreen
@@ -86,7 +89,7 @@ bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_SOURCE@ toggle
 bindsym --locked XF86MonBrightnessDown exec light -5
 bindsym --locked XF86MonBrightnessUp exec light +5
 
-bindsym Print exec grim Pictures/$(date +'%s.png')
+bindsym Print exec grim Pictures/$(date +"%s.png")
 
 bar {
     position top
@@ -106,5 +109,8 @@ bar {
         urgent_workspace #ffffffff #ffffffff #ffffffff
     }
 }
+
+exec wlsunset -l 31.22 -L 121.47
+exec swayidle timeout 600 "loginctl suspend"
 
 include /etc/sway/config.d/*
