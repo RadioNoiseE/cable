@@ -20,7 +20,7 @@ input type:touchpad {
 
 floating_modifier $MOD normal
 
-bindsym $MOD+l exec foot
+bindsym $MOD+l exec launch
 bindsym $MOD+e exec expose
 
 bindsym $MOD+q kill
