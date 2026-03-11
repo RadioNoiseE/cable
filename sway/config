@@ -108,6 +108,7 @@ bar {
     }
 }
 
+exec zako -d ~/.cangjie
 exec wlsunset -l 31.22 -L 121.47
 exec swayidle timeout 600 "loginctl suspend"
 
