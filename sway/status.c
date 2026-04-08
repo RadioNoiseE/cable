@@ -8,16 +8,17 @@ int main(void) {
   int battery;
   int carrier;
 
-  struct timespec now;
+  struct timespec wake;
 
-  clock_gettime(CLOCK_MONOTONIC, &now);
-  now.tv_sec += 1;
-  now.tv_nsec = 0;
+  clock_gettime(CLOCK_MONOTONIC, &wake);
+  wake.tv_sec += 1;
+  wake.tv_nsec = 0;
 
   for (;;) {
-    clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &now, NULL);
+    clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &wake, NULL);
 
-    strftime(date, sizeof(date), "%a %b %d %T", localtime(&now.tv_sec));
+    time_t now = time(NULL);
+    strftime(date, sizeof(date), "%a %b %d %T", localtime(&now));
 
     if ((node = fopen("/sys/class/power_supply/BAT0/capacity", "r"))) {
       fscanf(node, "%d", &battery);
@@ -32,6 +33,6 @@ int main(void) {
     printf("%s (Pwr %d, Car %d)\n", date, battery, carrier);
     fflush(stdout);
 
-    now.tv_sec++;
+    wake.tv_sec++;
   }
 }
