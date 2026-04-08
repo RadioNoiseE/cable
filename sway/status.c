@@ -10,12 +10,12 @@ int main(void) {
 
   struct timespec now;
 
-  clock_gettime(CLOCK_REALTIME, &now);
+  clock_gettime(CLOCK_MONOTONIC, &now);
   now.tv_sec += 1;
   now.tv_nsec = 0;
 
   for (;;) {
-    clock_nanosleep(CLOCK_REALTIME, TIMER_ABSTIME, &now, NULL);
+    clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &now, NULL);
 
     strftime(date, sizeof(date), "%a %b %d %T", localtime(&now.tv_sec));
 
