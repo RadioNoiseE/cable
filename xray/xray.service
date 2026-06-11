@@ -1,0 +1,11 @@
+[Unit]
+Description=Xray Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/xray -c /usr/local/share/xray/config.json
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,71 @@
+{
+    "log": {
+        "loglevel": "warning"
+    },
+    "inbounds": [
+        {
+            "protocol": "tun",
+            "settings": {
+                "gateway": [
+                    "10.0.0.1/24",
+                    "fd00::1/64"
+                ],
+                "autoOutboundsInterface": "auto"
+            },
+            "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls",
+                    "quic"
+                ],
+                "routeOnly": true
+            },
+            "tag": "tun"
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "tag": "direct"
+        },
+        {
+            "protocol": "vless",
+            "settings": {
+                // address
+                "port": 443,
+                // id
+                // encryption
+                "flow": "xtls-rprx-vision"
+            },
+            "streamSettings": {
+                "security": "reality",
+                "realitySettings": {
+                    "serverName": "vercel.com",
+                    // password
+                    // shortId
+                }
+            },
+            "tag": "proxy"
+        }
+    ],
+    "routing": {
+        "rules": [
+            {
+                "domain": "geosite:cn",
+                "outboundTag": "direct"
+            },
+            {
+                "ip": [
+                    "geoip:cn",
+                    "geoip:private"
+                ],
+                "outboundTag": "direct"
+            },
+            {
+                "inboundTag": "tun",
+                "outboundTag": "proxy"
+            }
+        ]
+    }
+}
