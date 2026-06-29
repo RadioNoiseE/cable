@@ -20,7 +20,8 @@ input type:touchpad {
 
 floating_modifier $MOD normal
 
-bindsym $MOD+l exec launch
+bindsym $MOD+Return exec foot
+
 bindsym $MOD+e exec expose
 
 bindsym $MOD+q kill
@@ -34,8 +35,8 @@ bindsym $MOD+w floating toggle
 bindsym $MOD+r mode "resize"
 
 mode "resize" {
-    bindsym Left resize shrink width 10px
-    bindsym Right resize grow width 10px
+    bindsym Left resize grow width 10px
+    bindsym Right resize shrink width 10px
     bindsym Up resize grow height 10px
     bindsym Down resize shrink height 10px
 
@@ -51,9 +52,6 @@ bindsym $MOD+Shift+Left move left
 bindsym $MOD+Shift+Down move down
 bindsym $MOD+Shift+Up move up
 bindsym $MOD+Shift+Right move right
-
-bindgesture swipe:left workspace next
-bindgesture swipe:right workspace prev
 
 bindsym $MOD+1 workspace number 1
 bindsym $MOD+2 workspace number 2
@@ -80,7 +78,7 @@ bindsym $MOD+Shift+0 move container to workspace number 10
 bindsym $MOD+Space scratchpad show
 bindsym $MOD+Shift+Space move scratchpad
 
-bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle
 bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%-
 bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ 5%+
 bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_SOURCE@ toggle
@@ -93,7 +91,7 @@ bar {
     position top
     gaps 10
 
-    font "Iosevka Slab 10"
+    font "Iosevka 10"
 
     status_command status
 
@@ -110,7 +108,6 @@ bar {
 
 exec zako -d ~/.cangjie
 exec wlsunset -l 31.22 -L 121.47
-exec swayidle timeout 600 "loginctl suspend"
 
 for_window [all] inhibit_idle fullscreen
 
