@@ -1,10 +1,10 @@
 [Unit]
-Description=Xray Service
+Description=Snell Service
 After=network-online.target
 Wants=network-online.target
 
 [Service]
-ExecStart=/usr/local/bin/xray -c /usr/local/share/xray/config.json
+ExecStart=/usr/local/bin/sing-box run -c /usr/local/share/snell.json
 Restart=always
 
 [Install]
