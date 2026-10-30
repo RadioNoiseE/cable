@@ -1,4 +1,4 @@
-seat seat0 xcursor_theme Adwaita 20
+seat seat0 xcursor_theme Adwaita 18
 
 input type:keyboard {
     xkb_options caps:ctrl_modifier
