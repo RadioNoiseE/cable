@@ -1,5 +1,10 @@
+seat seat0 xcursor_theme Adwaita 20
+
+input type:keyboard {
+    xkb_options caps:ctrl_modifier
+}
+
 input type:touchpad {
-    dwt disable
     middle_emulation enabled
     natural_scroll enabled
     tap enabled
